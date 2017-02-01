@@ -4,7 +4,7 @@ module.exports = function (grunt) {
 	grunt.initConfig({
 		mocha_istanbul: {
 			coverage: {
-				src: 'specs',
+				src: 'test',
 				options: {
 					timeout: 30000,
 					ignoreLeaks: false,
@@ -21,7 +21,7 @@ module.exports = function (grunt) {
 			options: {
 				jshintrc: true
 			},
-			src: ['lib/**/*.js', 'specs/**/*.js']
+			src: ['lib/**/*.js', 'test/**/*.js']
 		},
 		clean: {
 			pre: ['*.log'],
