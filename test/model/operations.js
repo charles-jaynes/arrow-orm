@@ -26,8 +26,8 @@ module.exports = function () {
 					}
 				}
 			});
-			should(User.deleteAll).be.Undefined;
-			should(User.removeAll).be.Function;
+			should(User.deleteAll).be.Function();
+			should(User.removeAll).be.Function();
 
 			Connector.create = null;
 			var User2 = orm.Model.define('user', {
@@ -44,7 +44,7 @@ module.exports = function () {
 					}
 				}
 			});
-			should(User2.create).be.Undefined;
+			should(User2.create).be.Function();
 		});
 
 	});

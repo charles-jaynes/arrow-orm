@@ -27,7 +27,7 @@ module.exports = function () {
 				}
 			});
 
-			User.autogen.should.be.true;
+			User.autogen.should.be.true();
 		});
 
 		it('should be able to set autogen to true', function () {
@@ -49,7 +49,7 @@ module.exports = function () {
 				autogen: true
 			});
 
-			User.autogen.should.be.true;
+			User.autogen.should.be.true();
 		});
 
 		it('should be able to set autogen to false', function () {
@@ -71,7 +71,7 @@ module.exports = function () {
 				autogen: false
 			});
 
-			User.autogen.should.be.false;
+			User.autogen.should.be.false();
 		});
 
 	});

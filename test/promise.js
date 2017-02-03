@@ -27,11 +27,11 @@ describe('promise',function(){
 		var connector = new MyConnector();
 		var promise = connector.createRequest({},{});
 		should(promise.name).equal(connector.name);
-		should(promise.upsert).be.a.function;
-		should(promise.distinct).be.a.function;
-		should(promise.create).be.a.function;
+		should(promise.upsert).be.a.Function();
+		should(promise.distinct).be.a.Function();
+		should(promise.createMany).be.a.Function();
 		promise.connect(function(){
-			should(connectCalled).be.true;
+			should(connectCalled).be.true();
 			callback();
 		});
 	});
@@ -73,10 +73,10 @@ describe('promise',function(){
 		should(promise1).have.property('foo','bar');
 		should(promise2).have.property('foo','bar');
 		promise1.connect(function(){
-			should(connect1Called).be.true;
+			should(connect1Called).be.true();
 		});
 		promise2.connect(function(){
-			should(connect2Called).be.true;
+			should(connect2Called).be.true();
 			callback();
 		});
 	});
@@ -102,7 +102,7 @@ describe('promise',function(){
 		should(UserPromise).have.property('findAll');
 		should(UserPromise).have.property('findAllAPI');
 		var findAllAPI = UserPromise.findAllAPI();
-		should(findAllAPI).be.an.object;
+		should(findAllAPI).be.an.Object();
 		should(findAllAPI).have.property('generated', true);
 		should(findAllAPI).have.property('uiSort', 1);
 		should(findAllAPI).have.property('beforeEvent');
@@ -134,20 +134,20 @@ describe('promise',function(){
 
 		var UserPromise = User.createRequest({}, {});
 		UserPromise.findAll(function (err, result) {
-			should(err).be.not.ok;
-			should(result).be.an.array;
+			should(err).be.not.ok();
+			should(result).be.an.Array();
 			// use a null context
 			UserPromise.findAll.apply(null, [function (err) {
-				should(err).be.not.ok;
-				should(result).be.an.array;
+				should(err).be.not.ok();
+				should(result).be.an.Array();
 				// use our own instance
 				UserPromise.findAll.apply(UserPromise, [function (err) {
-					should(err).be.not.ok;
-					should(result).be.an.array;
+					should(err).be.not.ok();
+					should(result).be.an.Array();
 					// pass in an invalid Class type
 					UserPromise.findAll.apply(this, [function (err) {
-						should(err).be.not.ok;
-						should(result).be.an.array;
+						should(err).be.not.ok();
+						should(result).be.an.Array();
 						done();
 					}]);
 				}]);

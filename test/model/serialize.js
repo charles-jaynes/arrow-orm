@@ -52,7 +52,7 @@ module.exports = function () {
 			});
 			var instance = User.instance({name: 'jeff', age: 25});
 			var obj = instance.toJSON();
-			should(obj).be.undefined;
+			should(obj).be.undefined();
 		});
 
 		it('should support custom serializer returning a new property', function () {

@@ -27,7 +27,7 @@ module.exports = function () {
 			});
 
 			User.create({name: 'Jeff'}, function (err, user) {
-				should(err).not.be.ok;
+				should(err).not.be.ok();
 				var serialized = JSON.stringify(user);
 				should(serialized).equal(JSON.stringify({id: user.getPrimaryKey(), name: 'Jeff'}));
 				callback();

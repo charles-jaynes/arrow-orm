@@ -22,7 +22,7 @@ module.exports = function () {
 				connector: Connector
 			});
 
-			should(User.getMeta('foo')).be.null;
+			should(User.getMeta('foo')).be.null();
 		});
 
 		it('should be able to fetch default', function () {

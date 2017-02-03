@@ -1,39 +1,39 @@
 {
-	"name": "arrow-orm",
-	"version": "0.6.14",
-	"description": "Arrow Builder ORM",
-	"main": "index.js",
-	"license": "LicenseRef-LICENSE",
-	"bugs": {
-		"url": "https://jira.appcelerator.org/browse/API"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/appcelerator/arrow-orm"
-	},
-	"scripts": {
-		"test": "grunt"
-	},
-	"author": "Jeff Haynie",
-	"dependencies": {
-		"async": "^0.9.2",
-		"chalk": "^1.1.0",
-		"debug": "^2.1.1",
-		"lodash": "^3.10.1",
-		"lru-cache": "^2.7.0",
-		"mingo": "^0.3.1",
-		"pkginfo": "^0.3.0",
-		"pluralize": "^1.0.3"
-	},
-	"devDependencies": {
-		"grunt": "^0.4.5",
-		"grunt-contrib-clean": "^0.6.0",
-		"grunt-contrib-jshint": "^0.10.0",
-		"grunt-env": "^0.4.2",
-		"grunt-mocha-istanbul": "^3.0.1",
-		"istanbul": "^0.4.1",
-		"mocha": "^2.1.0",
-		"semver": "^5.0.3",
-		"should": "^4.6.0"
-	}
+  "name": "arrow-orm",
+  "version": "0.6.14",
+  "description": "Arrow Builder ORM",
+  "main": "index.js",
+  "license": "LicenseRef-LICENSE",
+  "bugs": {
+    "url": "https://jira.appcelerator.org/browse/API"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/appcelerator/arrow-orm"
+  },
+  "scripts": {
+    "test": "grunt"
+  },
+  "author": "Jeff Haynie",
+  "dependencies": {
+    "async": "^0.9.2",
+    "chalk": "^1.1.0",
+    "debug": "^2.1.1",
+    "lodash": "^3.10.1",
+    "lru-cache": "^2.7.0",
+    "mingo": "^0.3.1",
+    "pkginfo": "^0.3.0",
+    "pluralize": "^1.0.3"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-env": "^0.4.2",
+    "grunt-mocha-istanbul": "^5.0.2",
+    "istanbul": "^0.4.1",
+    "mocha": "^2.1.0",
+    "semver": "^5.0.3",
+    "should": "^11.2.0"
+  }
 }

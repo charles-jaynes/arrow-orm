@@ -40,7 +40,7 @@ module.exports = function () {
 			User.create({name: 'neeraj', age: 35});
 
 			function handleFindAll(err, results) {
-				should(err).be.not.ok;
+				should(err).be.not.ok();
 				should(results).have.property('length', 3);
 			}
 
@@ -68,7 +68,7 @@ module.exports = function () {
 			User.create({name: 'neeraj', age: 35});
 
 			function handleFindAll(err, results) {
-				should(err).be.not.ok;
+				should(err).be.not.ok();
 			}
 
 			should(callCount).equal(0);
@@ -101,7 +101,7 @@ module.exports = function () {
 			});
 
 			function handleFindOne(err, instance) {
-				should(err).be.not.ok;
+				should(err).be.not.ok();
 				should(instance).equal(_instance);
 			}
 
@@ -134,12 +134,12 @@ module.exports = function () {
 			User.create({name: 'neeraj', age: 35});
 
 			function handleFindAll(err, results) {
-				should(err).be.not.ok;
+				should(err).be.not.ok();
 				should(results).have.property('length', 3);
 			}
 
 			function handleFindOne(err, instance) {
-				should(err).be.not.ok;
+				should(err).be.not.ok();
 				should(instance).equal(_instance);
 			}
 
@@ -177,12 +177,12 @@ module.exports = function () {
 			User.create({name: 'neeraj', age: 35});
 
 			function handleFindAll(err, results) {
-				should(err).be.not.ok;
+				should(err).be.not.ok();
 				should(results).have.property('length', 3);
 			}
 
 			function handleFindOne(err, instance) {
-				should(err).be.not.ok;
+				should(err).be.not.ok();
 				should(instance).equal(_instance);
 			}
 
@@ -231,12 +231,12 @@ module.exports = function () {
 			User.create({name: 'neeraj', age: 35});
 
 			function handleFindAll(err, results) {
-				should(err).be.not.ok;
+				should(err).be.not.ok();
 				should(results).have.property('length', 3);
 			}
 
 			function handleFindOne(err, instance) {
-				should(err).be.not.ok;
+				should(err).be.not.ok();
 				should(instance).equal(_instance);
 			}
 

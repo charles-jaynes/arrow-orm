@@ -24,7 +24,7 @@ module.exports = function () {
 			});
 
 			User.create({name: 'Jeff'}, function (err, user) {
-				should(err).not.be.ok;
+				should(err).not.be.ok();
 				var serialized = JSON.stringify(user);
 				should(serialized).equal(JSON.stringify({id: user.getPrimaryKey(), name: 'Jeff'}));
 				var serializedPayload = JSON.stringify(user.toPayload());
@@ -119,7 +119,7 @@ module.exports = function () {
 			var user2 = User.instance({name: 'jeff'}, true);
 			user2.setPrimaryKey(2);
 			should(user2.get('name')).be.equal('jeff');
-			should(user2.get('email')).be.undefined;
+			should(user2.get('email')).be.undefined();
 			user2 = user2.toJSON();
 			should(user2).have.property('id', 2);
 			should(user2).have.property('name', 'jeff');
@@ -186,10 +186,10 @@ module.exports = function () {
 
 			var model = User.instance({name: 'foo/bar', bar: 'foo'}, true);
 			var obj = model.toJSON();
-			should(_instance).be.ok;
-			should(_customInstance).be.ok;
+			should(_instance).be.ok();
+			should(_customInstance).be.ok();
 			should(_instance).equal(_customInstance);
-			should(_instance).be.an.Object;
+			should(_instance).be.an.Object();
 			should(_instance.get('bar')).be.equal('foo');
 		});
 
@@ -217,7 +217,7 @@ module.exports = function () {
 			var obj = model.toJSON();
 			should(obj).have.property('qux', 'foo');
 			should(model.get('qux')).be.equal('foo');
-			should(User.fields.qux.get).be.a.function;
+			should(User.fields.qux.get).be.a.Function();
 		});
 
 		it("should pass get named function with spaces as string", function () {
@@ -245,7 +245,7 @@ module.exports = function () {
 			should(obj).have.property('qux', 'foo');
 			should(model.get('qux')).be.equal('foo');
 			// should have converted it to a function when invoked
-			should(User.fields.qux.get).be.a.function;
+			should(User.fields.qux.get).be.a.Function();
 		});
 
 		it("should pass get without custom property", function () {
@@ -272,7 +272,7 @@ module.exports = function () {
 			should(obj).have.property('qux', 'foo');
 			should(model.get('qux')).be.equal('foo');
 			// should have converted it to a function when invoked
-			should(User.fields.qux.get).be.a.function;
+			should(User.fields.qux.get).be.a.Function();
 		});
 
 		it("should pass set function as string", function () {
@@ -362,7 +362,7 @@ module.exports = function () {
 
 			var model = User.instance({name: 'foo/bar'}, true);
 			var obj = model.toJSON();
-			should(obj).be.an.object;
+			should(obj).be.an.Object();
 			should(obj).have.property('name');
 			should(obj.name).have.property('a', 'foo');
 			should(obj.name).have.property('b', 'bar');
@@ -391,7 +391,7 @@ module.exports = function () {
 
 			var model = User.instance({name: 'foo/bar'}, true);
 			var obj = model.toJSON();
-			should(obj).be.an.object;
+			should(obj).be.an.Object();
 			should(obj).have.property('name');
 			should(obj.name).have.property('a', 'foo');
 			should(obj.name).have.property('b', 'bar');
