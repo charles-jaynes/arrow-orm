@@ -1374,6 +1374,7 @@ module.exports = function () {
 			should(ExtendedUser.connector).be.equal(Connector);
 			should(ExtendedUser.fields.name).not.be.ok;
 			should(ExtendedUser.fields.age).be.ok;
+			should(ExtendedUser.fields.age._own).be.true;
 
 		});
 
