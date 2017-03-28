@@ -1371,9 +1371,9 @@ module.exports = function () {
 			should(ExtendedUser).be.an.Object();
 			should(ExtendedUser.connector).be.an.Object();
 			should(ExtendedUser.connector).be.equal(Connector);
-			should(ExtendedUser.fields.name).not.be.ok;
-			should(ExtendedUser.fields.age).be.ok;
-			should(ExtendedUser.fields.age._own).be.true;
+			should(ExtendedUser.fields.name).not.be.ok();
+			should(ExtendedUser.fields.age).be.ok();
+			should(ExtendedUser.fields.age._own).be.true();
 		});
 
 		it('should be able to use chain operators', function (callback) {
