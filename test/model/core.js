@@ -7,7 +7,6 @@ var should = require('should'),
 
 module.exports = function () {
 	describe('#core', function () {
-
 		it('should require a definition when defining a model', function () {
 			should(function () {
 				orm.Model.define('user');
