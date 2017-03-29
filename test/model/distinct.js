@@ -28,8 +28,8 @@ module.exports = function () {
 			});
 
 			User.distinct('type,name', {}, function (err, results) {
-				should(err).not.be.ok;
-				should(results).be.empty;
+				should(err).not.be.ok();
+				should(results).be.empty();
 			});
 
 			User.create({type: 'connector', name: 'mongo', version: '1.0.1'});
@@ -41,8 +41,8 @@ module.exports = function () {
 
 			// form the unique key on the values of both of these fields
 			User.distinct('type,name', {}, function (err, results) {
-				should(err).not.be.ok;
-				should(results).be.an.array;
+				should(err).not.be.ok();
+				should(results).be.an.Array();
 				should(results[0]).have.property('name', 'mongo');
 				should(results[0]).have.property('type', 'connector');
 				should(results[0]).have.property('version', '1.0.1');
@@ -56,8 +56,8 @@ module.exports = function () {
 
 			// form the unique key on the values of both of these fields
 			User.distinct('type, name', {}, function (err, results) {
-				should(err).not.be.ok;
-				should(results).be.an.array;
+				should(err).not.be.ok();
+				should(results).be.an.Array();
 				should(results[0]).have.property('name', 'mongo');
 				should(results[0]).have.property('type', 'connector');
 				should(results[0]).have.property('version', '1.0.1');
@@ -93,8 +93,8 @@ module.exports = function () {
 				name: 'Steve',
 				age: 50
 			}, function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
 				should(user.name).eql('Steve');
 				should(user.age).eql(50);
 
@@ -102,8 +102,8 @@ module.exports = function () {
 					name: 'Steve',
 					age: 15
 				}, function (err, user) {
-					should(err).not.be.ok;
-					should(user).be.an.object;
+					should(err).not.be.ok();
+					should(user).be.an.Object();
 					should(user.name).eql('Steve');
 					should(user.age).eql(15);
 
@@ -111,15 +111,16 @@ module.exports = function () {
 						name: 'Jack',
 						age: 50
 					}, function (err, user) {
-						should(err).not.be.ok;
-						should(user).be.an.object;
+						should(err).not.be.ok();
+						should(user).be.an.Object();
 						should(user.name).eql('Jack');
 						should(user.age).eql(50);
 
 						User.distinct('name', {sel: 'name'}, function (err, results) {
-							should(err).be.not.ok;
+							should(err).be.not.ok();
 
-							should(results).be.an.Array.with.length(2);
+							should(results).be.an.Array();
+							should(results).be.length(2);
 							should(results[0].name).eql('Steve');
 							should(results[1].name).eql('Jack');
 
@@ -129,9 +130,10 @@ module.exports = function () {
 								},
 								sel: 'age'
 							}, function (err, results) {
-								should(err).be.not.ok;
+								should(err).be.not.ok();
 
-								should(results).be.an.Array.with.length(1);
+								should(results).be.an.Array();
+								should(results).be.length(1);
 								should(results[0].age).eql(50);
 
 								User.distinct('age', {
@@ -139,17 +141,18 @@ module.exports = function () {
 										name: 'Jack'
 									}
 								}, function (err, results) {
-									should(err).be.not.ok;
+									should(err).be.not.ok();
 
-									should(results).be.an.Array.with.length(1);
+									should(results).be.an.Array();
+									should(results).be.length(1);
 									should(results[0].get('name')).eql('Jack');
 									should(results[0].get('age')).eql(50);
 
 									should(results[0]).have.property('name', 'Jack');
 									should(results[0]).have.property('age', 50);
 
-									should(results instanceof orm.Collection).not.be.true;
-									should(results instanceof Array).be.true;
+									should(results instanceof orm.Collection).not.be.true();
+									should(results instanceof Array).be.true();
 
 									callback();
 								});

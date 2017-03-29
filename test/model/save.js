@@ -23,16 +23,16 @@ module.exports = function () {
 			should(instance).have.property('array');
 			instance.array = [1, 2];
 			instance.save(function (err, result) {
-				should(err).not.be.ok;
-				should(result).be.ok;
+				should(err).not.be.ok();
+				should(result).be.ok();
 				should(result.array).be.eql(instance.array);
 				var array = instance.array;
 				array.splice(0, 1);
 				instance.array = array;
 				should(instance.array).be.eql([2]);
 				instance.save(function (err, result) {
-					should(err).not.be.ok;
-					should(result).be.ok;
+					should(err).not.be.ok();
+					should(result).be.ok();
 					should(result.array).be.eql([2]);
 					done();
 				});
@@ -53,16 +53,16 @@ module.exports = function () {
 			should(instance).have.property('array');
 			instance.array = [1, 2];
 			instance.save(function (err, result) {
-				should(err).not.be.ok;
-				should(result).be.ok;
+				should(err).not.be.ok();
+				should(result).be.ok();
 				should(result.array).be.eql(instance.array);
 				var array = instance.array;
 				array.splice(0, 1);
 				instance.array = array;
 				should(instance.array).be.eql([2]);
 				instance.save(function (err, result) {
-					should(err).not.be.ok;
-					should(result).be.ok;
+					should(err).not.be.ok();
+					should(result).be.ok();
 					should(result.array).be.eql([2]);
 					done();
 				});
@@ -114,7 +114,7 @@ module.exports = function () {
 					}
 				],
 				function (err) {
-					should(err).not.be.ok;
+					should(err).not.be.ok();
 					done();
 				});
 		});
@@ -152,7 +152,7 @@ module.exports = function () {
 					}
 				],
 				function (err) {
-					should(err).not.be.ok;
+					should(err).not.be.ok();
 					done();
 				});
 		});

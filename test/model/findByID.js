@@ -29,8 +29,8 @@ module.exports = function () {
 					name: "Erin"
 				}
 			], function (err, results) {
-				should(err).not.be.ok;
-				should(results).be.ok;
+				should(err).not.be.ok();
+				should(results).be.ok();
 
 				should(results).have.lengthOf(2);
 				should(results[0].name).eql("George");
@@ -40,9 +40,9 @@ module.exports = function () {
 					results[0].id,
 					results[1].id
 				], function (err, result) {
-					should(err).not.be.ok;
-					should(result).be.ok;
-					should(result).be.an.Array;
+					should(err).not.be.ok();
+					should(result).be.ok();
+					should(result).be.an.Array();
 					should(result).have.lengthOf(2);
 					should(result[0].name).eql("George");
 					should(result[1].name).eql("Erin");
@@ -70,18 +70,18 @@ module.exports = function () {
 			User.create({
 				name: "George"
 			}, function (err, result) {
-				should(err).not.be.ok;
-				should(result).be.ok;
+				should(err).not.be.ok();
+				should(result).be.ok();
 
 				id = result.getPrimaryKey();
 
 				User.findByID([id, 100000], function (err, result) {
-					should(err).not.be.ok;
-					should(result).be.ok;
-					should(result).be.an.Array;
+					should(err).not.be.ok();
+					should(result).be.ok();
+					should(result).be.an.Array();
 					should(result).have.lengthOf(2);
 					should(result[0].name).eql("George");
-					should(result[1]).not.be.ok;
+					should(result[1]).not.be.ok();
 
 					callback();
 				});

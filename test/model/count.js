@@ -29,7 +29,7 @@ module.exports = function () {
 			User.create({name: 'nolan', age: 55});
 			User.create({name: 'neeraj', age: 35});
 			User.count({where: {age: {$gte: 30}}}, function (err, count) {
-				should(err).not.be.ok;
+				should(err).not.be.ok();
 				should(count).be.equal(2);
 				callback();
 			});
@@ -55,7 +55,7 @@ module.exports = function () {
 			User.create({name: 'nolan', age: 55});
 			User.create({name: 'neeraj', age: 35});
 			User.count({where: {age: {$gte: 100}}}, function (err, count) {
-				should(err).not.be.ok;
+				should(err).not.be.ok();
 				should(count).be.equal(0);
 				callback();
 			});
@@ -94,17 +94,17 @@ module.exports = function () {
 				date: date
 			}, function (err, user) {
 				User.query({where: {age: '50'}}, function (err, result) {
-					should(err).not.be.ok;
-					should(result).be.ok;
-					should(result).be.an.Array;
+					should(err).not.be.ok();
+					should(result).be.ok();
+					should(result).be.an.Array();
 					should(result).have.length(1);
 					should(result[0]).have.property('age', 50);
 					should(result[0]).have.property('date', new Date(Date.parse(date)));
 					should(result[0]).have.property('cool', true);
 					User.query({where: {cool: 'true'}}, function (err, result) {
-						should(err).not.be.ok;
-						should(result).be.ok;
-						should(result).be.an.Array;
+						should(err).not.be.ok();
+						should(result).be.ok();
+						should(result).be.an.Array();
 						should(result).have.length(1);
 						should(result[0]).have.property('age', 50);
 						callback();
@@ -134,8 +134,8 @@ module.exports = function () {
 				name: 'Steve',
 				age: 50
 			}, function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
 				should(user.name).eql('Steve');
 				should(user.age).eql(50);
 
@@ -143,8 +143,8 @@ module.exports = function () {
 					name: 'Steve',
 					age: 15
 				}, function (err, user) {
-					should(err).not.be.ok;
-					should(user).be.an.object;
+					should(err).not.be.ok();
+					should(user).be.an.Object();
 					should(user.name).eql('Steve');
 					should(user.age).eql(15);
 
@@ -152,15 +152,16 @@ module.exports = function () {
 						name: 'Jack',
 						age: 50
 					}, function (err, user) {
-						should(err).not.be.ok;
-						should(user).be.an.object;
+						should(err).not.be.ok();
+						should(user).be.an.Object();
 						should(user.name).eql('Jack');
 						should(user.age).eql(50);
 
 						User.distinct('name', {sel: 'name'}, function (err, results) {
-							should(err).be.not.ok;
+							should(err).be.not.ok();
 
-							should(results).be.an.Array.with.length(2);
+							should(results).be.an.Array();
+							should(results).be.length(2);
 							should(results[0].name).eql('Steve');
 							should(results[1].name).eql('Jack');
 
@@ -168,7 +169,7 @@ module.exports = function () {
 								where: {name: 'Jack'},
 								distinct: 'count'
 							}, function (err, count) {
-								should(err).be.not.ok;
+								should(err).be.not.ok();
 								should(count).equal(1);
 								callback();
 							});

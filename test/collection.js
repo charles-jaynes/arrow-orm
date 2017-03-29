@@ -43,7 +43,7 @@ describe('collections', function () {
 
 		it('should be an instance of an array', function () {
 			var c = new Collection();
-			should(c).be.an.Array;
+			should(c).be.an.Array();
 		});
 	});
 
@@ -167,7 +167,7 @@ describe('collections', function () {
 		it('should return as json', function () {
 			var c = new Collection(null, createInstances());
 			var json = c.toJSON();
-			should(json).be.an.Array;
+			should(json).be.an.Array();
 			should(json.length).equal(3);
 			should(json).not.have.property('model');
 			should(json).not.have.property('toJSON');
@@ -183,7 +183,7 @@ describe('collections', function () {
 		it('should return as an array', function () {
 			var c = new Collection(null, createInstances());
 			var arr = c.toArray();
-			should(arr).be.an.Array;
+			should(arr).be.an.Array();
 			should(arr.length).equal(3);
 			should(arr).not.have.property('emit');
 		});
@@ -192,20 +192,20 @@ describe('collections', function () {
 	describe('instanceof', function () {
 		it('should be an array', function () {
 			var c = new Collection();
-			should(c).be.an.array;
+			should(c).be.an.Array();
 			should(c.length).be.equal(0);
 		});
 		it('should be instanceof array', function () {
 			var c = new Collection();
-			should(c instanceof Array).be.true;
+			should(c instanceof Array).be.true();
 		});
 		it('should be instanceof Collection', function () {
 			var c = new Collection();
-			should(c instanceof Collection).be.true;
+			should(c instanceof Collection).be.true();
 		});
 		it('should be instanceof Collection', function () {
 			var c = new Collection();
-			should(Array.isArray(c)).be.true;
+			should(Array.isArray(c)).be.true();
 		});
 	});
 

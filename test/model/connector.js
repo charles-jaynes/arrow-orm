@@ -22,7 +22,7 @@ module.exports = function () {
 			});
 			var instance = User.instance({ name: "jeff" });
 			var collection = new orm.Collection(User, [instance]);
-			should(collection).be.an.object;
+			should(collection).be.an.Object();
 			should(collection.length).be.equal(1);
 			collection.add(User.instance({ name: "nolan" }));
 			should(collection.length).be.equal(2);

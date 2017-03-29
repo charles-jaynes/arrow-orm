@@ -5,19 +5,19 @@ describe('errors',function(){
 
 	it('should define errors',function(){
 
-		should(orm.ValidationError).be.an.object;
-		should(orm.ORMError).be.an.object;
+		should(orm.ValidationError).be.a.Function();
+		should(orm.ORMError).be.a.Function();
 
 		var err = new orm.ORMError('hello');
 
-		should(err instanceof orm.ORMError).be.true;
-		should(err instanceof Error).be.true;
-		should(err instanceof orm.ValidationError).be.false;
+		should(err instanceof orm.ORMError).be.true();
+		should(err instanceof Error).be.true();
+		should(err instanceof orm.ValidationError).be.false();
 
 		err = new orm.ValidationError('somefield','hello');
-		should(err instanceof orm.ORMError).be.true;
-		should(err instanceof Error).be.true;
-		should(err instanceof orm.ValidationError).be.true;
+		should(err instanceof orm.ORMError).be.true();
+		should(err instanceof Error).be.true();
+		should(err instanceof orm.ValidationError).be.true();
 		should(err).have.property('field','somefield');
 
 	});

@@ -32,8 +32,8 @@ module.exports = function () {
 			User.create({name: 'nolan', age: 55});
 			User.create({name: 'neeraj', age: 35});
 			User.query({where: {age: {$gte: 30}}, sel: 'name,age'}, function (err, collection) {
-				should(err).not.be.ok;
-				should(collection).be.an.object;
+				should(err).not.be.ok();
+				should(collection).be.an.Object();
 				should(collection.length).be.equal(2);
 				var record = collection[0].toJSON();
 				should(record).have.property('name');
@@ -66,8 +66,8 @@ module.exports = function () {
 			User.create({name: 'nolan', age: 55});
 			User.create({name: 'neeraj', age: 35});
 			User.query({LIMIT: 2}, function (err, collection) {
-				should(err).not.be.ok;
-				should(collection).be.an.object;
+				should(err).not.be.ok();
+				should(collection).be.an.Object();
 				should(collection.length).be.equal(2);
 				callback();
 			});
@@ -96,8 +96,8 @@ module.exports = function () {
 			User.create({name: 'nolan', age: 55});
 			User.create({name: 'neeraj', age: 35});
 			User.query({limit: 0}, function (err, collection) {
-				should(err).not.be.ok;
-				should(collection).be.an.object;
+				should(err).not.be.ok();
+				should(collection).be.an.Object();
 				should(collection.length).be.equal(3);
 				callback();
 			});
@@ -125,7 +125,7 @@ module.exports = function () {
 			User.create({name: 'nolan', age: 55});
 			User.create({name: 'neeraj', age: 35});
 			User.query({where: 'bad'}, function (err, collection) {
-				should(err).be.ok;
+				should(err).be.ok();
 				callback();
 			});
 		});
@@ -154,8 +154,8 @@ module.exports = function () {
 			User.create({name: 'neeraj', age: 35});
 			User.create({name: 'pepper', age: 3});
 			User.query({skip: 1, limit: 2}, function (err, collection) {
-				should(err).not.be.ok;
-				should(collection).be.an.object;
+				should(err).not.be.ok();
+				should(collection).be.an.Object();
 				should(collection.length).be.equal(2);
 				callback();
 			});
@@ -205,8 +205,8 @@ module.exports = function () {
 				where: {},
 				sel: 'description,type,name,author,author_username,author_id'
 			}, function (err, collection) {
-				should(err).not.be.ok;
-				should(collection).be.an.object;
+				should(err).not.be.ok();
+				should(collection).be.an.Object();
 				should(collection.length).be.equal(3);
 				var record = collection[0].toJSON();
 				should(record).have.property('description');
@@ -262,8 +262,8 @@ module.exports = function () {
 				author_id: '123'
 			});
 			User.query({where: {}, unsel: 'component,version'}, function (err, collection) {
-				should(err).not.be.ok;
-				should(collection).be.an.object;
+				should(err).not.be.ok();
+				should(collection).be.an.Object();
 				should(collection.length).be.equal(3);
 				var record = collection[0].toJSON();
 				should(record).have.property('description');

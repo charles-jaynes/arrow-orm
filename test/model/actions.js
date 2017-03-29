@@ -49,7 +49,7 @@ module.exports = function () {
 				actions: null
 			});
 
-			should(User.actions).be.not.ok;
+			should(User.actions).be.not.ok();
 		});
 
 		it('should not be able to set invalid actions', function () {

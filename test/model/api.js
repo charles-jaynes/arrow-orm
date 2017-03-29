@@ -38,7 +38,7 @@ module.exports = function () {
 			should(API).have.property('description', 'Create a user');
 			should(API).have.property('parameters');
 			should(API).have.property('action');
-			should(API.action).be.a.Function;
+			should(API.action).be.a.Function();
 			should(API.parameters).have.property('name');
 			should(API.parameters).have.property('age');
 			should(API.parameters).have.property('email');
@@ -93,7 +93,7 @@ module.exports = function () {
 			should(API).have.property('description', 'Update a specific user');
 			should(API).have.property('parameters');
 			should(API).have.property('action');
-			should(API.action).be.a.Function;
+			should(API.action).be.a.Function();
 			should(API.parameters).have.property('name');
 			should(API.parameters).have.property('age');
 			should(API.parameters).have.property('email');
@@ -148,7 +148,7 @@ module.exports = function () {
 			should(API).have.property('description', 'Create or update a user');
 			should(API).have.property('parameters');
 			should(API).have.property('action');
-			should(API.action).be.a.Function;
+			should(API.action).be.a.Function();
 			should(API.parameters).have.property('name');
 			should(API.parameters).have.property('age');
 			should(API.parameters).have.property('email');
@@ -203,7 +203,7 @@ module.exports = function () {
 			should(API).have.property('generated', true);
 			should(API).have.property('parameters');
 			should(API).have.property('action');
-			should(API.action).be.a.Function;
+			should(API.action).be.a.Function();
 			should(API.parameters).have.property('id');
 			should(API.parameters.id).have.property('description', 'The user ID');
 			should(API.parameters.id).have.property('optional', false);
@@ -241,7 +241,7 @@ module.exports = function () {
 			should(API).have.property('generated', true);
 			should(API).not.have.property('parameters');
 			should(API).have.property('action');
-			should(API.action).be.a.Function;
+			should(API.action).be.a.Function();
 		});
 
 		it('should create distinct', function () {
@@ -275,7 +275,7 @@ module.exports = function () {
 			should(API).have.property('generated', true);
 			should(API).have.property('parameters');
 			should(API).have.property('action');
-			should(API.action).be.a.Function;
+			should(API.action).be.a.Function();
 			should(API.parameters).have.property('field');
 			should(API.parameters).have.property('where');
 			should(API.parameters.field).have.property('type', 'path');
@@ -319,7 +319,7 @@ module.exports = function () {
 			should(API).have.property('generated', true);
 			should(API).have.property('parameters');
 			should(API).have.property('action');
-			should(API.action).be.a.Function;
+			should(API.action).be.a.Function();
 			should(API.parameters).have.property('id');
 			should(API.parameters.id).have.property('type', 'path');
 			should(API.parameters.id).have.property('optional', false);
@@ -358,7 +358,7 @@ module.exports = function () {
 			should(API).have.property('generated', true);
 			should(API).not.have.property('parameters');
 			should(API).have.property('action');
-			should(API.action).be.a.Function;
+			should(API.action).be.a.Function();
 		});
 
 		it('should create count', function () {
@@ -436,7 +436,7 @@ module.exports = function () {
 			should(API.parameters.per_page).have.property('required', false);
 			should(API.parameters.per_page).have.property('default', 10);
 			should(API.parameters.per_page).have.property('description', 'Number of results per page.');
-			should(API.action).be.a.Function;
+			should(API.action).be.a.Function();
 		});
 
 		it('should create query', function () {
@@ -514,7 +514,7 @@ module.exports = function () {
 			should(API.parameters.per_page).have.property('required', false);
 			should(API.parameters.per_page).have.property('default', 10);
 			should(API.parameters.per_page).have.property('description', 'Number of results per page.');
-			should(API.action).be.a.Function;
+			should(API.action).be.a.Function();
 		});
 
 		it('should create findAndModify', function () {
@@ -592,7 +592,7 @@ module.exports = function () {
 			should(API.parameters.per_page).have.property('required', false);
 			should(API.parameters.per_page).have.property('default', 10);
 			should(API.parameters.per_page).have.property('description', 'Number of results per page.');
-			should(API.action).be.a.Function;
+			should(API.action).be.a.Function();
 		});
 
 		it('should create event properties', function () {

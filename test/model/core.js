@@ -7,7 +7,6 @@ var should = require('should'),
 
 module.exports = function () {
 	describe('#core', function () {
-
 		it('should require a definition when defining a model', function () {
 			should(function () {
 				orm.Model.define('user');
@@ -39,7 +38,7 @@ module.exports = function () {
 				found = c;
 			});
 
-			should(orm.Model.getModels()).be.an.array;
+			should(orm.Model.getModels()).be.an.Array();
 			should(orm.Model.getModels()).have.length(0);
 
 			var Cat = orm.Model.define('cat', {
@@ -64,14 +63,14 @@ module.exports = function () {
 			should(orm.Model.getModels()).have.length(2);
 
 			should(orm.Model.getModels()[0]).equal(Cat);
-			should(orm.Model.getModels()[0].generated).be.false;
+			should(orm.Model.getModels()[0].generated).be.false();
 			should(orm.Model.getModels()[1]).equal(User);
-			should(orm.Model.getModels()[1].generated).be.false;
+			should(orm.Model.getModels()[1].generated).be.false();
 
 			should(orm.Model.getModel('cat')).equal(Cat);
-			should(orm.Model.getModel('cat').generated).be.false;
+			should(orm.Model.getModel('cat').generated).be.false();
 			should(orm.Model.getModel('user')).equal(User);
-			should(orm.Model.getModel('user').generated).be.false;
+			should(orm.Model.getModel('user').generated).be.false();
 		});
 
 		it('should be to JSON serialize', function () {
@@ -262,7 +261,7 @@ module.exports = function () {
 				connector: Connector
 			});
 
-			should(User.keys()).be.an.array;
+			should(User.keys()).be.an.Array();
 			should(User.keys()).eql(['name', 'age']);
 		});
 
@@ -275,9 +274,9 @@ module.exports = function () {
 				connector: new orm.MemoryConnector()
 			});
 			User.create(function (err, instance) {
-				should(err).be.not.ok;
-				should(instance).be.an.Object;
-				should(instance.getPrimaryKey()).be.ok;
+				should(err).be.not.ok();
+				should(instance).be.an.Object();
+				should(instance.getPrimaryKey()).be.ok();
 				instance.setPrimaryKey(11);
 				should(instance.getPrimaryKey()).be.exactly(11);
 				should(instance.primaryKey).be.exactly(11);
@@ -318,9 +317,9 @@ module.exports = function () {
 			});
 
 			User.create(function (err, instance) {
-				should(err).be.not.ok;
-				should(instance).be.an.object;
-				should(instance.keys()).be.an.array;
+				should(err).be.not.ok();
+				should(instance).be.an.Object();
+				should(instance.keys()).be.an.Array();
 				should(instance.keys()).eql(['name', 'age']);
 				should(instance.values()).eql({name: 'Jeff', age: 10});
 				callback();
@@ -348,29 +347,29 @@ module.exports = function () {
 			});
 
 			User.create({friends: ['Nolan']}, function (err, instance) {
-				should(err).be.not.ok;
-				should(instance).be.an.object;
+				should(err).be.not.ok();
+				should(instance).be.an.Object();
 				should(instance.get('friends')).containEql('Nolan');
 				var friends = instance.get('friends');
 				friends.push('Neeraj');
-				should(instance._dirty).be.false;
+				should(instance._dirty).be.false();
 				User.update(instance, function (err, result) {
-					should(err).not.be.ok;
-					should(result).be.an.object;
+					should(err).not.be.ok();
+					should(result).be.an.Object();
 					// since we added but didn't call update or set, won't mutate
 					should(result.get('friends')).not.containEql('Neeraj');
-					should(instance._dirty).be.false;
+					should(instance._dirty).be.false();
 					instance.set('friends', friends);
-					should(instance._dirty).be.true;
+					should(instance._dirty).be.true();
 					User.update(instance, function (err, result) {
-						should(err).not.be.ok;
-						should(result).be.an.object;
+						should(err).not.be.ok();
+						should(result).be.an.Object();
 						// since we added but didn't call update or set, won't mutate
 						should(result.get('friends')).containEql('Neeraj');
-						should(instance._dirty).be.false;
+						should(instance._dirty).be.false();
 						instance.change('friends', ['Dawson', 'Tony']);
-						should(instance._dirty).be.true;
-						should(instance.isUnsaved()).be.true;
+						should(instance._dirty).be.true();
+						should(instance.isUnsaved()).be.true();
 						should(instance.get('friends')).containEql('Dawson');
 						should(instance.get('friends')).containEql('Tony');
 						callback();
@@ -412,14 +411,14 @@ module.exports = function () {
 			should(modelKeys).containEql('yearOfBirth');
 
 			User.create(function (err, instance) {
-				should(err).be.not.ok;
-				should(instance).be.an.Object;
+				should(err).be.not.ok();
+				should(instance).be.an.Object();
 				var payload = instance.toPayload();
-				should(payload).be.an.Object;
-				should(payload.name).be.not.ok;
-				should(payload.internalName).be.ok;
-				should(payload.age).be.ok;
-				should(payload.yearOfBirth).be.not.ok;
+				should(payload).be.an.Object();
+				should(payload.name).be.not.ok();
+				should(payload.internalName).be.ok();
+				should(payload.age).be.ok();
+				should(payload.yearOfBirth).be.not.ok();
 				callback();
 			});
 
@@ -448,8 +447,8 @@ module.exports = function () {
 			});
 
 			User.create(function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
 				should(user.name).be.equal('Jeff');
 				should(user.age).be.equal(0);
 				should(user.unintelligent).be.equal(false);
@@ -473,8 +472,8 @@ module.exports = function () {
 			});
 
 			User.create({age: 9}, function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
 				should(user.age).be.equal(9);
 
 				(function () {
@@ -505,8 +504,8 @@ module.exports = function () {
 			});
 
 			User.create({age: 9, height: 9}, function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
 				should(user.age).be.equal(9);
 				should(user.height).be.equal(9);
 
@@ -552,8 +551,8 @@ module.exports = function () {
 			});
 
 			User.create({age: 9, height: 9}, function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
 				should(user.age).be.equal(9);
 				should(user.height).be.equal(9);
 
@@ -593,8 +592,8 @@ module.exports = function () {
 			});
 
 			User.create({age: 9}, function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
 				should(user.age).be.equal(9);
 
 				(function () {
@@ -625,13 +624,13 @@ module.exports = function () {
 			});
 
 			User.create({age: 12}, function (err, user) {
-				should(err).be.ok;
+				should(err).be.ok();
 				should(err.message).be.equal('Number must be 9');
 			});
 
 			User.create({age: 9}, function (err, user) {
-				should(err).be.not.ok;
-				should(user).be.ok;
+				should(err).be.not.ok();
+				should(user).be.ok();
 			});
 
 		});
@@ -656,8 +655,8 @@ module.exports = function () {
 			});
 
 			User.create({age: 9}, function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
 				should(user.age).be.equal(9);
 
 				(function () {
@@ -688,9 +687,9 @@ module.exports = function () {
 			});
 
 			User.create({}, function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
-				should(user.get('age')).be.undefined;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
+				should(user.get('age')).be.undefined();
 
 				(function () {
 					user.age = 12;
@@ -726,9 +725,9 @@ module.exports = function () {
 			});
 
 			User.create({}, function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
-				should(user.get('first_name')).be.undefined;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
+				should(user.get('first_name')).be.undefined();
 
 				(function () {
 					user.first_name = '123';
@@ -760,12 +759,12 @@ module.exports = function () {
 			});
 
 			User.create({onoff: false}, function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
-				should(user.get('onoff')).be.false;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
+				should(user.get('onoff')).be.false();
 			});
 			User.create({onoff: true}, function (err, user) {
-				should(err).be.ok;
+				should(err).be.ok();
 				should(err).have.property('field', 'onoff');
 				should(err).have.property('message', 'yes');
 			});
@@ -784,9 +783,9 @@ module.exports = function () {
 			});
 
 			User.create({good: 'field'}, function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
-				should(user.get('bad')).be.undefined;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
+				should(user.get('bad')).be.undefined();
 				callback();
 			});
 
@@ -807,13 +806,13 @@ module.exports = function () {
 			});
 
 			User.create(function (err, user) {
-				should(err).be.ok;
-				should(user).not.be.an.object;
+				should(err).be.ok();
+				should(user).not.be.an.Object();
 				should(err.message).be.equal('required field value missing: name');
 
 				User.create({name: 'Jeff'}, function (err, user) {
-					should(err).not.be.ok;
-					should(user).be.an.object;
+					should(err).not.be.ok();
+					should(user).be.an.Object();
 					should(user.name).be.equal('Jeff');
 					callback();
 				});
@@ -834,14 +833,14 @@ module.exports = function () {
 				Length = orm.Model.define('user', {fields: {name: {type: String, length: 8}}, connector: Connector});
 
 			function shouldSucceed(err, user) {
-				should(err).be.not.ok;
-				should(user).be.an.Object;
+				should(err).be.not.ok();
+				should(user).be.an.Object();
 			}
 
 			function shouldFail(message) {
 				return function (err, user) {
-					should(err).be.ok;
-					should(user).not.be.an.Object;
+					should(err).be.ok();
+					should(user).not.be.an.Object();
 					should(err.message).be.equal(message);
 				};
 			}
@@ -885,9 +884,9 @@ module.exports = function () {
 			});
 
 			User.create(function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
-				should(user.name).be.Undefined;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
+				should(user.name).be.undefined();
 				callback();
 			});
 
@@ -908,9 +907,9 @@ module.exports = function () {
 			});
 
 			User.create(function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
-				should(user.name).be.Undefined;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
+				should(user.name).be.undefined();
 				user.set('name', 'jeff');
 				should(user.name).be.equal('jeff');
 				user.name = 'jack';
@@ -936,12 +935,12 @@ module.exports = function () {
 			});
 
 			User.create(function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
-				should(user.name).be.Undefined;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
+				should(user.name).be.undefined();
 				user.on('change:name', function (value, old_value) {
 					should(value).be.equal('jeff');
-					should(old_value).be.Undefined;
+					should(old_value).be.undefined();
 					user.removeAllListeners();
 					callback();
 				});
@@ -1082,10 +1081,10 @@ module.exports = function () {
 
 			tasks.push(function (next) {
 				User.create({name: 'jeff other'}, function (err, u) {
-					should(err).be.not.ok;
-					should(u).be.an.object;
+					should(err).be.not.ok();
+					should(u).be.an.Object();
 					should(u).have.property('name', 'jeff other');
-					should(u.getPrimaryKey()).be.ok;
+					should(u.getPrimaryKey()).be.ok();
 					next();
 				});
 			});
@@ -1093,10 +1092,10 @@ module.exports = function () {
 			tasks.push(function (next) {
 				User.create({name: 'jeff'}, function (err, u) {
 					user = u;
-					should(err).be.not.ok;
-					should(user).be.an.object;
+					should(err).be.not.ok();
+					should(user).be.an.Object();
 					should(user).have.property('name', 'jeff');
-					should(user.getPrimaryKey()).be.ok;
+					should(user.getPrimaryKey()).be.ok();
 					next();
 				});
 			});
@@ -1104,7 +1103,7 @@ module.exports = function () {
 			tasks.push(function (next) {
 				user.set('name', 'jeff2');
 				should(user.name).be.equal('jeff2');
-				should(user.isUnsaved()).be.true;
+				should(user.isUnsaved()).be.true();
 				user.name = 'jeff';
 				next();
 			});
@@ -1118,27 +1117,27 @@ module.exports = function () {
 					user.removeAllListeners();
 				});
 				User.save(user, function (err, result) {
-					should(err).not.be.ok;
-					should(result).be.an.object;
-					should(user.isUnsaved()).be.false;
-					should(saved).be.true;
+					should(err).not.be.ok();
+					should(result).be.an.Object();
+					should(user.isUnsaved()).be.false();
+					should(saved).be.true();
 					next();
 				});
 			});
 
 			tasks.push(function (next) {
 				User.deleteAll(function (err, result) {
-					should(err).not.be.ok;
-					should(result).be.a.Number;
-					should(result > 0).be.true;
+					should(err).not.be.ok();
+					should(result).be.a.Number();
+					should(result > 0).be.true();
 					next();
 				});
 			});
 
 			tasks.push(function (next) {
 				User.create({name: 'jeff'}, function (err, result) {
-					should(err).not.be.ok;
-					should(result).be.an.object;
+					should(err).not.be.ok();
+					should(result).be.an.Object();
 					user = result;
 					next();
 				});
@@ -1146,10 +1145,10 @@ module.exports = function () {
 
 			tasks.push(function (next) {
 				User.findAll(function (err, result) {
-					should(err).not.be.ok;
-					should(result).be.an.Object;
+					should(err).not.be.ok();
+					should(result).be.an.Object();
 					should(result).have.length(1);
-					should(result[0]).be.an.Object;
+					should(result[0]).be.an.Object();
 					should(result[0].name).be.equal('jeff');
 					next();
 				});
@@ -1157,8 +1156,8 @@ module.exports = function () {
 
 			tasks.push(function (next) {
 				User.findByID(user.getPrimaryKey(), function (err, result) {
-					should(err).not.be.ok;
-					should(result).be.an.Object;
+					should(err).not.be.ok();
+					should(result).be.an.Object();
 					should(result.name).be.equal('jeff');
 					next();
 				});
@@ -1166,10 +1165,10 @@ module.exports = function () {
 
 			tasks.push(function (next) {
 				User.find({name: 'jeff'}, function (err, result) {
-					should(err).not.be.ok;
-					should(result).be.an.Object;
+					should(err).not.be.ok();
+					should(result).be.an.Object();
 					should(result).have.length(1);
-					should(result[0]).be.an.Object;
+					should(result[0]).be.an.Object();
 					should(result[0].name).be.equal('jeff');
 					next();
 				});
@@ -1177,8 +1176,8 @@ module.exports = function () {
 
 			tasks.push(function (next) {
 				User.find({name: 'jeff2'}, function (err, result) {
-					should(err).not.be.ok;
-					should(result).be.an.Object;
+					should(err).not.be.ok();
+					should(result).be.an.Object();
 					should(result).have.length(0);
 					next();
 				});
@@ -1186,8 +1185,8 @@ module.exports = function () {
 
 			tasks.push(function (next) {
 				User.find({age: 10}, function (err, result) {
-					should(err).not.be.ok;
-					should(result).be.an.Object;
+					should(err).not.be.ok();
+					should(result).be.an.Object();
 					should(result).have.length(1);
 					should(result[0].name).be.equal('jeff');
 					next();
@@ -1196,18 +1195,18 @@ module.exports = function () {
 
 			tasks.push(function (next) {
 				User.remove(user, function (err, result) {
-					should(err).not.be.ok;
-					should(result).be.an.object;
+					should(err).not.be.ok();
+					should(result).be.an.Object();
 					should(result.name).be.equal('jeff');
-					should(result.isDeleted()).be.true;
+					should(result.isDeleted()).be.true();
 					next();
 				});
 			});
 
 			tasks.push(function (next) {
 				User.findByID(user, function (err, result) {
-					should(err).not.be.ok;
-					should(result).not.be.ok;
+					should(err).not.be.ok();
+					should(result).not.be.ok();
 					next();
 				});
 			});
@@ -1230,8 +1229,8 @@ module.exports = function () {
 			});
 
 			User.create({name: 'Jeff'}, function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
 				// serialized model instances should only serialize their values
 				should(JSON.stringify(user)).be.eql(JSON.stringify({id: user.getPrimaryKey(), name: 'Jeff'}));
 				callback();
@@ -1273,11 +1272,11 @@ module.exports = function () {
 				}
 			});
 
-			should(AgeModel).be.an.Object;
-			should(AgeModel.connector).be.an.Object;
+			should(AgeModel).be.an.Object();
+			should(AgeModel.connector).be.an.Object();
 			should(AgeModel.connector).be.equal(Connector);
-			should(AgeModel.fields.name).be.ok;
-			should(AgeModel.fields.age).be.ok;
+			should(AgeModel.fields.name).be.ok();
+			should(AgeModel.fields.age).be.ok();
 
 			// test extending fields based on name
 
@@ -1288,18 +1287,18 @@ module.exports = function () {
 				}
 			});
 
-			should(RenamedAgeModel).be.an.Object;
-			should(RenamedAgeModel.connector).be.an.Object;
+			should(RenamedAgeModel).be.an.Object();
+			should(RenamedAgeModel.connector).be.an.Object();
 			should(RenamedAgeModel.connector).be.equal(Connector);
-			should(RenamedAgeModel.fields.NewName).be.ok;
-			should(RenamedAgeModel.fields.NewAge).be.ok;
-			should(RenamedAgeModel.fields.name).be.not.ok;
+			should(RenamedAgeModel.fields.NewName).be.ok();
+			should(RenamedAgeModel.fields.NewAge).be.ok();
+			should(RenamedAgeModel.fields.name).be.not.ok();
 
 			// test extending an extended model from another model
 			RenamedAgeModel.create({name: 'jeff'}, function (err, instance) {
-				should(err).not.be.ok;
-				should(instance).be.ok;
-				should(instance instanceof orm.Instance).be.true;
+				should(err).not.be.ok();
+				should(instance).be.ok();
+				should(instance instanceof orm.Instance).be.true();
 
 				// make sure that our name field is mapped to NewName
 				should(JSON.stringify(instance)).be.eql(JSON.stringify({
@@ -1320,7 +1319,7 @@ module.exports = function () {
 					},
 					connector: Connector
 				}));
-				should(BirthdayAgeModel).be.an.Object;
+				should(BirthdayAgeModel).be.an.Object();
 				should(BirthdayAgeModel.fields).have.property('name');
 				should(BirthdayAgeModel.fields).have.property('age');
 				should(BirthdayAgeModel.fields).have.property('birthdate');
@@ -1333,7 +1332,7 @@ module.exports = function () {
 					},
 					connector: Connector
 				}));
-				should(BirthdayModel).be.an.Object;
+				should(BirthdayModel).be.an.Object();
 				should(BirthdayModel.fields).have.property('name');
 				should(BirthdayModel.fields).not.have.property('age');
 				should(BirthdayModel.fields).have.property('birthdate');
@@ -1369,13 +1368,12 @@ module.exports = function () {
 				}
 			});
 
-			should(ExtendedUser).be.an.object;
-			should(ExtendedUser.connector).be.an.object;
+			should(ExtendedUser).be.an.Object();
+			should(ExtendedUser.connector).be.an.Object();
 			should(ExtendedUser.connector).be.equal(Connector);
-			should(ExtendedUser.fields.name).not.be.ok;
-			should(ExtendedUser.fields.age).be.ok;
-			should(ExtendedUser.fields.age._own).be.true;
-
+			should(ExtendedUser.fields.name).not.be.ok();
+			should(ExtendedUser.fields.age).be.ok();
+			should(ExtendedUser.fields.age._own).be.true();
 		});
 
 		it('should be able to use chain operators', function (callback) {
@@ -1404,9 +1402,9 @@ module.exports = function () {
 			];
 
 			User.create(users, function (err, collection) {
-				should(err).be.not.ok;
+				should(err).be.not.ok();
 
-				should(collection).be.an.object;
+				should(collection).be.an.Object();
 				should(collection.length).be.equal(4);
 
 				var id = collection[0].getPrimaryKey();
@@ -1426,31 +1424,31 @@ module.exports = function () {
 
 				var result = _.sortBy(collection, 'age')[0];
 
-				should(result).be.an.object;
+				should(result).be.an.Object();
 				should(result.name).be.equal('Jenna');
 
 				result = _.sortBy(collection, '-age')[0];
 
-				should(result).be.an.object;
+				should(result).be.an.Object();
 				should(result.name).be.equal('Jeff');
 
 				result = _.max(collection, 'age');
-				should(result).be.an.object;
+				should(result).be.an.Object();
 				should(result.name).be.equal('Jeff');
 
 				result = _.min(collection, 'age');
-				should(result).be.an.object;
+				should(result).be.an.Object();
 				should(result.name).be.equal('Jenna');
 
 				result = _.where(collection, {'age': 12})[0];
-				should(result).be.an.object;
+				should(result).be.an.Object();
 				should(result.name).be.equal('Jack');
 
 				result = _.find(collection, function (value) {
 					return value.age > 12 && value.age < 18;
 				});
 
-				should(result).be.an.object;
+				should(result).be.an.Object();
 				should(result.name).be.equal('Jared');
 
 				collection.length = 0;
@@ -1478,7 +1476,7 @@ module.exports = function () {
 				});
 				// once you attempt to use it, should raise if not set
 				User.find({}, function (err) {
-					should(err).be.ok;
+					should(err).be.ok();
 					should(err.message).be.equal('missing required connector');
 					done();
 				});
@@ -1541,15 +1539,15 @@ module.exports = function () {
 			});
 
 			User.create({name: 'Jeff'}, function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
 
 				user.delete(function (err, result) {
-					should(err).not.be.ok;
+					should(err).not.be.ok();
 					should(user).be.equal(result);
 
 					user.save(function (err) {
-						should(err).be.ok;
+						should(err).be.ok();
 						should(err.message).be.equal('instance has already been deleted');
 						callback();
 					});
@@ -1574,12 +1572,12 @@ module.exports = function () {
 			});
 
 			User.create({name: 'Jeff'}, function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
 
 				user.save(function (err, result) {
-					should(err).not.be.ok;
-					should(result).be.ok;
+					should(err).not.be.ok();
+					should(result).be.ok();
 					should(result).be.equal(user);
 					callback();
 				});
@@ -1603,8 +1601,8 @@ module.exports = function () {
 			});
 
 			User.create({name: 'Jeff'}, function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
 
 				// should not error
 				user.id = 123;
@@ -1634,7 +1632,7 @@ module.exports = function () {
 				model = User.instance({foo: 'bar'}, true);
 			}).not.throw();
 
-			should(model).be.an.object;
+			should(model).be.an.Object();
 			should(model).not.have.property('foo');
 
 		});
@@ -1664,8 +1662,8 @@ module.exports = function () {
 			});
 
 			User.create(function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.an.object;
+				should(err).not.be.ok();
+				should(user).be.an.Object();
 				should(user.getProperName()).be.equal('Jeff');
 				should(user.getMyConnector()).be.equal(Connector);
 				callback();
@@ -1716,7 +1714,7 @@ module.exports = function () {
 
 			var model = User.instance({name: 'bar'}, true);
 			var values = model.values();
-			should(values).be.an.object;
+			should(values).be.an.Object();
 			should(values).have.property('name', 'bar');
 			should(values).not.have.property('email');
 		});
@@ -1743,7 +1741,7 @@ module.exports = function () {
 
 			// nothing dirty
 			var values = model.values(true);
-			should(values).be.an.object;
+			should(values).be.an.Object();
 			should(values).not.have.property('name', 'bar');
 			should(values).not.have.property('email', 'test@example.com');
 
@@ -1756,7 +1754,7 @@ module.exports = function () {
 			model.set('email', 'hello@example.com', true);
 
 			values = model.values(true);
-			should(values).be.an.object;
+			should(values).be.an.Object();
 			should(values).have.property('name', 'foo');
 			should(values).have.property('email', 'hello@example.com');
 		});
@@ -1782,7 +1780,7 @@ module.exports = function () {
 			var model = User.instance({name: 'bar'}, true);
 			var collection = new orm.Collection(User, [model]);
 			var array = collection.toArray();
-			should(array).be.an.array;
+			should(array).be.an.Array();
 			should(array).have.length(1);
 			should(array[0]).be.equal(model);
 		});
@@ -1830,7 +1828,7 @@ module.exports = function () {
 
 			var model = User.instance({name: 'bar', email: 'jeff@foo.com'}, true);
 			model.set('name', 'foo');
-			should(model.isUnsaved()).be.true;
+			should(model.isUnsaved()).be.true();
 			model.getChangedFields().should.have.property('name', 'foo');
 			model.getChangedFields().should.not.have.property('email');
 		});
@@ -1876,8 +1874,8 @@ module.exports = function () {
 				connector: 'memory'
 			});
 			var instance = User.instance({age: ''});
-			should(instance.get('age')).not.be.a.string;
-			should(instance.get('age')).be.an.object;
+			should(instance.get('age')).not.be.a.String();
+			should(instance.get('age')).be.an.Object();
 			should(instance.get('age')).be.eql({});
 		});
 

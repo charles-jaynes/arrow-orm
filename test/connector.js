@@ -66,7 +66,7 @@ describe('connectors', function () {
 	it('should be able to register and retrieve connectors', function () {
 		var MyConnector = orm.Connector.extend({name: 'MyConnector'});
 
-		should(orm.Connector.getConnectors()).be.an.array;
+		should(orm.Connector.getConnectors()).be.an.Array();
 		should(orm.Connector.getConnectors()).have.length(0);
 
 		var found;
@@ -77,7 +77,7 @@ describe('connectors', function () {
 
 		var connector = new MyConnector();
 
-		should(found).be.ok;
+		should(found).be.ok();
 		should(found).equal(connector);
 
 		should(orm.Connector.getConnectors()).have.length(1);
@@ -87,24 +87,24 @@ describe('connectors', function () {
 	it('should be able to create with defaults', function () {
 
 		var MyConnector = orm.Connector.extend({name: 'MyConnector'});
-		should(MyConnector).be.an.object;
+		should(MyConnector).be.a.Function();
 
 		var connector = new MyConnector();
 
-		should(connector).be.an.object;
+		should(connector).be.an.Object();
 	});
 
 	it('should be able to create with config', function () {
 
 		var MyConnector = orm.Connector.extend({name: 'MyConnector'});
 
-		should(MyConnector).be.an.object;
+		should(MyConnector).be.a.Function();
 		var connector = new MyConnector({
 			hello: 'world'
 		});
 
-		should(connector).be.an.object;
-		should(connector.config).be.an.object;
+		should(connector).be.an.Object();
+		should(connector.config).be.an.Object();
 		should(connector.config).have.property('hello', 'world');
 	});
 
@@ -119,11 +119,11 @@ describe('connectors', function () {
 			}
 		});
 
-		should(MyConnector).be.an.object;
+		should(MyConnector).be.a.Function();
 		var connector = new MyConnector();
 
-		should(connector).be.an.object;
-		should(ctor).be.true;
+		should(connector).be.an.Object();
+		should(ctor).be.true();
 
 	});
 
@@ -139,12 +139,12 @@ describe('connectors', function () {
 			deleteAll: 'baz'
 		});
 
-		should(MyConnector).be.an.object;
+		should(MyConnector).be.a.Function();
 		var connector = new MyConnector();
-		should(connector).be.an.object;
+		should(connector).be.an.Object();
 
 		connector.query();
-		should(called).be.true;
+		should(called).be.true();
 		should(connector).have.property('deleteAll', 'baz');
 
 	});
@@ -153,19 +153,18 @@ describe('connectors', function () {
 
 		var MyConnector = orm.Connector.extend({name: 'MyConnector'});
 
-		should(MyConnector).be.an.object;
+		should(MyConnector).be.a.Function();
 		var connector = new MyConnector();
 
 		var AnotherConnector = connector.extend({
 			hello: function () {}
 		});
 
-		should(AnotherConnector).be.an.object;
-		should(AnotherConnector.hello).be.a.function;
+		should(AnotherConnector).be.a.Function();
 
 		var instance = new AnotherConnector();
-		should(instance).be.an.object;
-		should(instance.hello).be.a.function;
+		should(instance).be.an.Object();
+		should(instance.hello).be.a.Function();
 
 	});
 
@@ -219,38 +218,38 @@ describe('connectors', function () {
 
 		var UserPromise = User.createRequest(request, response);
 
-		should(UserPromise).be.an.object;
-		should(UserPromise.connector).be.an.object;
+		should(UserPromise).be.an.Object();
+		should(UserPromise.connector).be.an.Object();
 		should(UserPromise.connector).not.be.equal(connector);
 		should(UserPromise.getConnector()).be.equal(UserPromise.connector);
-		should(UserPromise.login).be.a.function;
-		should(UserPromise.request).not.be.null;
-		should(UserPromise.response).not.be.null;
-		should(UserPromise.connector.request).not.be.null;
-		should(UserPromise.connector.response).not.be.null;
+		// should(UserPromise.login).be.a.Function();
+		should(UserPromise.request).not.be.null();
+		should(UserPromise.response).not.be.null();
+		should(UserPromise.connector.request).not.be.null();
+		should(UserPromise.connector.response).not.be.null();
 		should(UserPromise.request).be.equal(request);
 		should(UserPromise.response).be.equal(response);
 
 		UserPromise.findByID(1, function (err, user) {
 			// console.log(err && err.stack);
-			should(err).not.be.ok;
-			should(user).be.ok;
+			should(err).not.be.ok();
+			should(user).be.ok();
 			should(user).have.property('name', 'Jeff');
 			// login should have been called and we set
-			should(connection).be.an.object;
+			should(connection).be.an.Object();
 			should(connection).have.property('username', 'foo@bar.com');
 			should(incoming).have.property('username', 'foo@bar.com');
 
 			connection.username = 'bar@foo.com'; // set it to test that it doesn't change
 			UserPromise.findByID(2, function (err, user) {
-				should(err).not.be.ok;
-				should(user).be.ok;
-				should(connection).be.an.object;
+				should(err).not.be.ok();
+				should(user).be.ok();
+				should(connection).be.an.Object();
 				// this means it didn't go back through login if still set
 				should(connection).have.property('username', 'bar@foo.com');
 				UserPromise.endRequest();
-				should(UserPromise.request).be.null;
-				should(UserPromise.response).be.null;
+				should(UserPromise.request).be.null();
+				should(UserPromise.response).be.null();
 				callback();
 			});
 		});
@@ -339,14 +338,14 @@ describe('connectors', function () {
 				name: 'testing',
 				translateWhereRegex: true,
 				query: function (Model, options, callback) {
-					should(options.where).be.ok;
-					should(options.where.name).be.ok;
+					should(options.where).be.ok();
+					should(options.where.name).be.ok();
 					if (options.where.positive) {
-						should(options.where.name.$regex).be.ok;
+						should(options.where.name.$regex).be.ok();
 						should(options.where.name.$regex).eql('^Hello.*$');
 					}
 					else {
-						should(options.where.name.$not.$regex).be.ok;
+						should(options.where.name.$not.$regex).be.ok();
 						should(options.where.name.$not.$regex).eql('^Hello.*$');
 					}
 				}
@@ -370,7 +369,7 @@ describe('connectors', function () {
 					name: 'testing',
 					query: function (Model, options, callback) {
 						should(options.skip).eql(0);
-						should(options.where).be.not.ok;
+						should(options.where).be.not.ok();
 						callback(null, {});
 					}
 				}),
@@ -398,27 +397,26 @@ describe('connectors', function () {
 				});
 
 			model.query({limit: 1}, function (err, result) {
-				should(err).not.be.ok;
-				should(result).be.an.object;
-				should(result).not.be.an.array;
-				should(result).be.empty;
+				should(err).not.be.ok();
+				should(result).be.undefined();
+				should(result).not.be.an.Array();
 
 				model.create({name: 'jeff'}, function (err, instance) {
-					should(err).not.be.ok;
-					should(instance).be.an.object;
+					should(err).not.be.ok();
+					should(instance).be.an.Object();
 					should(instance.get('name')).be.equal('jeff');
 					model.query({limit: 1}, function (err, result) {
-						should(err).not.be.ok;
-						should(result).be.an.object;
-						should(result).not.be.an.array;
+						should(err).not.be.ok();
+						should(result).be.an.Object();
+						should(result).not.be.an.Array();
 						should(result.get('name')).be.equal('jeff');
 						should(result.getPrimaryKey()).be.greaterThan(0);
 
 						model.query({limit: 10}, function (err, result) {
-							should(err).not.be.ok;
-							should(result).be.an.object;
-							should(result).be.an.array;
-							should(result).not.be.empty;
+							should(err).not.be.ok();
+							should(result).be.an.Object();
+							should(result).be.an.Array();
+							should(result).not.be.empty();
 							should(result).have.length(1);
 							should(result[0].get('name')).be.equal('jeff');
 							should(result[0].getPrimaryKey()).be.greaterThan(0);
@@ -460,12 +458,12 @@ describe('connectors', function () {
 				fname: fname,
 				lname: lname
 			}, function (err, upsertedInstance) {
-				should(err).not.be.ok;
-				should(upsertedInstance).be.ok;
+				should(err).not.be.ok();
+				should(upsertedInstance).be.ok();
 
 				User.findAll(function (err, collection) {
-					should(err).not.be.ok;
-					should(collection).be.an.Array;
+					should(err).not.be.ok();
+					should(collection).be.an.Array();
 
 					should(collection.length).equal(1);
 					should(collection[0].fname).equal(fname);
@@ -501,12 +499,12 @@ describe('connectors', function () {
 				fname: fname,
 				lname: lname
 			}, function (err, createdInstance) {
-				should(err).not.be.ok;
-				should(createdInstance).be.an.Object;
+				should(err).not.be.ok();
+				should(createdInstance).be.an.Object();
 
 				User.findAll(function (err, collection1) {
-					should(err).not.be.ok;
-					should(collection1).be.an.Array;
+					should(err).not.be.ok();
+					should(collection1).be.an.Array();
 
 					should(collection1.length).equal(1);
 					should(collection1[0].fname).equal(fname);
@@ -516,12 +514,12 @@ describe('connectors', function () {
 						fname: 'Jack',
 						lname: lname
 					}, function (err, upsertedInstance) {
-						should(err).not.be.ok;
-						should(upsertedInstance).be.ok;
+						should(err).not.be.ok();
+						should(upsertedInstance).be.ok();
 
 						User.findAll(function (err, collection) {
-							should(err).not.be.ok;
-							should(collection).be.an.Array;
+							should(err).not.be.ok();
+							should(collection).be.an.Array();
 
 							should(collection.length).equal(1);
 							should(collection[0].fname).equal('Jack');
@@ -558,8 +556,8 @@ describe('connectors', function () {
 				foo: 'hello'
 			});
 			connector.connect(function (err) {
-				should(err).not.be.ok;
-				should(connector.config).be.an.object;
+				should(err).not.be.ok();
+				should(connector.config).be.an.Object();
 				should(connector.config).have.property('foo', 'hello');
 				callback();
 			});
@@ -577,8 +575,8 @@ describe('connectors', function () {
 			});
 			var connector = new MyConnector();
 			connector.findAll(null, function (err, results) {
-				should(err).be.not.ok;
-				should(results).be.an.array;
+				should(err).be.not.ok();
+				should(results).be.an.Array();
 				done();
 			});
 		});
@@ -597,9 +595,9 @@ describe('connectors', function () {
 			});
 			var connector = (new MyConnector()).createRequest({}, {});
 			connector.findAll(null, function (err, results) {
-				should(err).be.not.ok;
-				should(results).be.an.array;
-				should(called).be.true;
+				should(err).be.not.ok();
+				should(results).be.an.Array();
+				should(called).be.true();
 				done();
 			});
 		});
@@ -613,8 +611,8 @@ describe('connectors', function () {
 			});
 			var connector = (new MyConnector()).createRequest({}, {});
 			connector.findAll(null, function (err, results) {
-				should(err).be.not.ok;
-				should(results).be.an.array;
+				should(err).be.not.ok();
+				should(results).be.an.Array();
 				done();
 			});
 		});
@@ -630,8 +628,8 @@ describe('connectors', function () {
 			});
 			var connector = new MyConnector();
 			connector.connect(function (err) {
-				should(err).be.not.ok;
-				should(called).be.ok;
+				should(err).be.not.ok();
+				should(called).be.ok();
 				callback();
 			});
 		});
@@ -668,28 +666,28 @@ describe('connectors', function () {
 
 			var connector = new MyConnector();
 			connector.connect(function (err) {
-				should(err).be.ok;
+				should(err).be.ok();
 				should(err.message).containEql('url is a required config property');
 
 				connector = new MyConnector({
 					url: ''
 				});
 				connector.connect(function (err) {
-					should(err).be.ok;
+					should(err).be.ok();
 					should(err.message).containEql('url is a required config property');
 
 					connector = new MyConnector({
 						url: 'ht://bad'
 					});
 					connector.connect(function (err) {
-						should(err).be.ok;
+						should(err).be.ok();
 						should(err.message).containEql('for url is invalid for the');
 
 						connector = new MyConnector({
 							url: 'http://a.good.com/url/for/the/config'
 						});
 						connector.connect(function (err) {
-							should(err).be.not.ok;
+							should(err).be.not.ok();
 							next();
 						});
 					});
@@ -706,8 +704,8 @@ describe('connectors', function () {
 			});
 			var connector = new MyConnector();
 			connector.connect(function (err) {
-				should(err).not.be.ok;
-				should(connector.config).be.an.object;
+				should(err).not.be.ok();
+				should(connector.config).be.an.Object();
 				should(connector.config).have.property('foo', 'bar');
 				callback();
 			});
@@ -724,8 +722,8 @@ describe('connectors', function () {
 				foo: 'hello'
 			});
 			connector.connect(function (err) {
-				should(err).not.be.ok;
-				should(connector.config).be.an.object;
+				should(err).not.be.ok();
+				should(connector.config).be.an.Object();
 				should(connector.config).have.property('foo', 'hello');
 				callback();
 			});
@@ -740,8 +738,8 @@ describe('connectors', function () {
 			});
 			var connector = new MyConnector();
 			connector.connect(function (err) {
-				should(err).not.be.ok;
-				should(connector.metadata).be.an.Object;
+				should(err).not.be.ok();
+				should(connector.metadata).be.an.Object();
 				should(connector.metadata).have.property('schema');
 				should(connector.metadata.schema).have.property('foo', 'bar');
 				callback();
@@ -757,8 +755,8 @@ describe('connectors', function () {
 			});
 			var connector = new MyConnector();
 			connector.connect(function (err) {
-				should(err).not.be.ok;
-				should(connector.metadata).be.an.object;
+				should(err).not.be.ok();
+				should(connector.metadata).be.an.Object();
 				should(connector.metadata).have.property('foo', 'bar');
 				callback();
 			});
@@ -776,10 +774,10 @@ describe('connectors', function () {
 			});
 			var connector = new MyConnector();
 			connector.connect(function (err) {
-				should(err).not.be.ok;
-				should(connector.metadata).be.an.object;
+				should(err).not.be.ok();
+				should(connector.metadata).be.an.Object();
 				should(connector.metadata).have.property('foo', 'bar');
-				should(connector.metadata.schema).be.an.object;
+				should(connector.metadata.schema).be.an.Object();
 				should(connector.metadata.schema).have.property('foo', 'bar');
 				callback();
 			});
@@ -831,7 +829,7 @@ describe('connectors', function () {
 						};
 					};
 					connector.connect(function (err) {
-						should(err).not.be.ok;
+						should(err).not.be.ok();
 						should(connector.models).have.property('MyConnector/user');
 						proceed();
 					});
@@ -845,7 +843,7 @@ describe('connectors', function () {
 						done();
 					};
 					connector.connect(function (err) {
-						should(err).not.be.ok;
+						should(err).not.be.ok();
 						should(connector.models).have.property('MyConnector/user');
 						proceed();
 					});
@@ -854,7 +852,7 @@ describe('connectors', function () {
 					var connector = new MyConnector();
 					connector.createModelsFromSchema = function () { };
 					connector.connect(function (err) {
-						should(err).not.be.ok;
+						should(err).not.be.ok();
 						proceed();
 					});
 				},
@@ -927,7 +925,7 @@ describe('connectors', function () {
 								}
 								break;
 						}
-						return false;
+						return false();
 					},
 					getCustomType: function (instance, field, name, value) {
 						var type = (typeof value).toLowerCase();
@@ -949,7 +947,7 @@ describe('connectors', function () {
 				});
 
 			var instance = User.instance({name: 'bar'});
-			should(instance.get('name')).not.be.a.string;
+			should(instance.get('name')).not.be.a.String();
 			should(instance.get('name')).be.an.instanceOf(FooType);
 			should(instance.name).have.property('val', 'bar');
 			should(instance.name).have.property('index', 6);
@@ -966,12 +964,12 @@ describe('connectors', function () {
 				foo = value;
 			});
 			connector.emit('foo', 1);
-			should(foo).be.ok;
+			should(foo).be.ok();
 			should(foo).equal(1);
 			connector.removeAllListeners();
 			foo = null;
 			connector.emit('foo', 2);
-			should(foo).be.null;
+			should(foo).be.null();
 			foo = null;
 			function listener(value) {
 				foo = value;
@@ -979,12 +977,12 @@ describe('connectors', function () {
 
 			connector.on('foo', listener);
 			connector.emit('foo', 1);
-			should(foo).be.ok;
+			should(foo).be.ok();
 			should(foo).equal(1);
 			connector.removeListener('foo', listener);
 			foo = null;
 			connector.emit('foo', 2);
-			should(foo).be.null;
+			should(foo).be.null();
 		});
 		it('should support register event', function () {
 			var foo;
@@ -998,7 +996,7 @@ describe('connectors', function () {
 				name: 'MyConnector'
 			});
 			var connector = new MyConnector();
-			should(foo).be.ok;
+			should(foo).be.ok();
 			should(foo).equal(connector);
 			orm.Connector.removeListener('register', listener);
 			orm.Connector.removeAllListeners();
@@ -1007,7 +1005,7 @@ describe('connectors', function () {
 				name: 'MyConnector2'
 			});
 			var connector2 = new MyConnector2();
-			should(foo).be.null;
+			should(foo).be.null();
 		});
 	});
 
@@ -1038,7 +1036,7 @@ describe('connectors', function () {
 				},
 				function (cb) {
 					User.query({where: {name: 'Jeff'}}, function (err, result) {
-						should(err).not.be.ok;
+						should(err).not.be.ok();
 						should(result).have.length(1);
 						should(result[0].get('name')).be.equal('Jeff');
 						cb();
@@ -1046,23 +1044,23 @@ describe('connectors', function () {
 				},
 				function (cb) {
 					User.query({limit: 1}, function (err, result) {
-						should(err).not.be.ok;
-						should(result).be.an.object;
-						should(result).not.be.an.array;
-						should(result.toJSON()).not.be.empty;
+						should(err).not.be.ok();
+						should(result).be.an.Object();
+						should(result).not.be.an.Array();
+						should(result.toJSON()).not.be.empty();
 						cb();
 					});
 				},
 				function (cb) {
 					User.query({limit: 1, sort: {name: -1}}, function (err, result) {
-						should(err).not.be.ok;
+						should(err).not.be.ok();
 						should(result.get('name')).be.equal('Tony');
 						cb();
 					});
 				},
 				function (cb) {
 					User.query({limit: 1, sort: {name: 1}}, function (err, result) {
-						should(err).not.be.ok;
+						should(err).not.be.ok();
 						should(result.get('name')).be.equal('Dawson');
 						cb();
 					});
@@ -1072,7 +1070,7 @@ describe('connectors', function () {
 						where: {$or: [{name: 'Jeff'}, {name: 'Nolan'}]},
 						sort: {name: 1}
 					}, function (err, result) {
-						should(err).not.be.ok;
+						should(err).not.be.ok();
 						should(result).have.length(2);
 						should(result[0].get('name')).be.equal('Jeff');
 						should(result[1].get('name')).be.equal('Nolan');
