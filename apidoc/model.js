@@ -3,7 +3,7 @@
  *
  * The Arrow Model API provides an interface to programmatically access
  * Models from an Arrow application.  Models provide an interface to access
- * data (or Model Instances) from an [Arrow Connector](http://docs.appcelerator.com/platform/latest/#!/guide/Arrow.Connector).
+ * data (or Model Instances) from an [Arrow Connector](http://docs.appcelerator.com/platform/latest/#!/guide/API_Builder_Models).
  *
  * The Model API is divided into two APIs:
  *
