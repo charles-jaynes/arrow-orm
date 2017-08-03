@@ -324,7 +324,7 @@ module.exports = function () {
 			should(API.parameters.id).have.property('type', 'path');
 			should(API.parameters.id).have.property('optional', false);
 			should(API.parameters.id).have.property('required', true);
-			should(API.parameters.id).have.property('description', 'The find succeeded, and the results are available.');
+			should(API.parameters.id).have.property('description', 'The user ID');
 		});
 
 		it('should create findAll', function () {
